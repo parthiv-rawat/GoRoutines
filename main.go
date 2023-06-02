@@ -35,7 +35,7 @@ func routines(w http.ResponseWriter, r *http.Request) {
 		} else if i == 6 {
 			go powerOf(w, r)
 		} else {
-			go helloWorld(w, r)
+			go helloWorld(w, r, i)
 		}
 	}
 	waitRoom.Wait()
@@ -76,7 +76,7 @@ func powerOf(w http.ResponseWriter, r *http.Request) {
 	waitRoom.Done()
 }
 
-func helloWorld(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello World from go Routine")
+func helloWorld(w http.ResponseWriter, r *http.Request, i int) {
+	fmt.Fprintf(w, "Hello World from go Routine %d\n", i)
 	waitRoom.Done()
 }
